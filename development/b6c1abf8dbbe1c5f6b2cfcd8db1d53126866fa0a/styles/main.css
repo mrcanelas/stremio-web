@@ -5122,6 +5122,7 @@ kbd {
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
+  pointer-events: none;
 }
 .epg-header-viewport-X_bQW::-webkit-scrollbar {
   display: none;
@@ -5154,6 +5155,7 @@ kbd {
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: none;
+  pointer-events: none;
 }
 .epg-channel-column-J14Dq::-webkit-scrollbar {
   display: none;
