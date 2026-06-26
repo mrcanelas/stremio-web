@@ -3039,6 +3039,7 @@ kbd {
   margin-left: 0.5rem;
 }
 .video-container-ezBpK .info-container-xyynk .flex-row-container-CAyQu .upcoming-watched-container-msCaq .upcoming-container-LXfQ7,
+.video-container-ezBpK .info-container-xyynk .flex-row-container-CAyQu .upcoming-watched-container-msCaq .live-container-aWBx8,
 .video-container-ezBpK .info-container-xyynk .flex-row-container-CAyQu .upcoming-watched-container-msCaq .watched-container-gvzs3 {
   flex: none;
   display: flex;
@@ -3048,10 +3049,12 @@ kbd {
   max-width: 10rem;
 }
 .video-container-ezBpK .info-container-xyynk .flex-row-container-CAyQu .upcoming-watched-container-msCaq .upcoming-container-LXfQ7:not(:only-child),
+.video-container-ezBpK .info-container-xyynk .flex-row-container-CAyQu .upcoming-watched-container-msCaq .live-container-aWBx8:not(:only-child),
 .video-container-ezBpK .info-container-xyynk .flex-row-container-CAyQu .upcoming-watched-container-msCaq .watched-container-gvzs3:not(:only-child) {
   max-width: 5rem;
 }
 .video-container-ezBpK .info-container-xyynk .flex-row-container-CAyQu .upcoming-watched-container-msCaq .upcoming-container-LXfQ7 .flag-icon-RDrvf,
+.video-container-ezBpK .info-container-xyynk .flex-row-container-CAyQu .upcoming-watched-container-msCaq .live-container-aWBx8 .flag-icon-RDrvf,
 .video-container-ezBpK .info-container-xyynk .flex-row-container-CAyQu .upcoming-watched-container-msCaq .watched-container-gvzs3 .flag-icon-RDrvf {
   height: 1.15rem;
   width: 1.15rem;
@@ -3059,6 +3062,7 @@ kbd {
   color: var(--secondary-foreground-color);
 }
 .video-container-ezBpK .info-container-xyynk .flex-row-container-CAyQu .upcoming-watched-container-msCaq .upcoming-container-LXfQ7 .flag-label-zJloD,
+.video-container-ezBpK .info-container-xyynk .flex-row-container-CAyQu .upcoming-watched-container-msCaq .live-container-aWBx8 .flag-label-zJloD,
 .video-container-ezBpK .info-container-xyynk .flex-row-container-CAyQu .upcoming-watched-container-msCaq .watched-container-gvzs3 .flag-label-zJloD {
   font-size: 0.8rem;
   font-weight: 800;
@@ -3072,6 +3076,9 @@ kbd {
 }
 .video-container-ezBpK .info-container-xyynk .flex-row-container-CAyQu .upcoming-watched-container-msCaq .watched-container-gvzs3 {
   background-color: var(--tertiary-accent-color);
+}
+.video-container-ezBpK .info-container-xyynk .flex-row-container-CAyQu .upcoming-watched-container-msCaq .live-container-aWBx8 {
+  background-color: #e50914;
 }
 .video-container-ezBpK.selected-AfK31 {
   animation: border-nc19J 3s ease-in-out forwards;
