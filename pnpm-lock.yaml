@@ -18,8 +18,8 @@ importers:
         specifier: 5.2.0
         version: 5.2.0
       '@stremio/stremio-core-web':
-        specifier: 0.55.0
-        version: 0.55.0
+        specifier: https://mrcanelas.github.io/stremio-core/stremio-core-web/feat/stream-thumbnails-support/stremio-stremio-core-web-0.56.4.tgz
+        version: https://mrcanelas.github.io/stremio-core/stremio-core-web/feat/stream-thumbnails-support/stremio-stremio-core-web-0.56.4.tgz
       '@stremio/stremio-icons':
         specifier: 5.8.0
         version: 5.8.0
@@ -1120,8 +1120,9 @@ packages:
   '@stremio/stremio-colors@5.2.0':
     resolution: {integrity: sha512-dYlPgu9W/H7c9s1zmW5tiDnRenaUa4Hg1QCyOg1lhOcgSfM/bVTi5nnqX+IfvGTTUNA0zgzh8hI3o3miwnZxTg==}
 
-  '@stremio/stremio-core-web@0.55.0':
-    resolution: {integrity: sha512-MdalnThEwnA8osQh+3/5OMzVIYZOoYmd94dN3nmCeT4rfV7IZXRFUg/uyCY+5bqigStlE3SfKEaGiSc6UnNtlQ==}
+  '@stremio/stremio-core-web@https://mrcanelas.github.io/stremio-core/stremio-core-web/feat/stream-thumbnails-support/stremio-stremio-core-web-0.56.4.tgz':
+    resolution: {integrity: sha512-x+lQjRELsQ8OXacYGLinw7/QHTo/ovlRMMYbhafbDcekOg3cUEupIqVNGBSMDuHZpTxRYZTPsXLNUX0VJnU3og==, tarball: https://mrcanelas.github.io/stremio-core/stremio-core-web/feat/stream-thumbnails-support/stremio-stremio-core-web-0.56.4.tgz}
+    version: 0.56.4
 
   '@stremio/stremio-icons@5.8.0':
     resolution: {integrity: sha512-IVUvQbIWfA4YEHCTed7v/sdQJCJ+OOCf84LTWpkE2W6GLQ+15WHcMEJrVkE1X3ekYJnGg3GjT0KLO6tKSU0P4w==}
@@ -2429,7 +2430,7 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   globals@14.0.0:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
@@ -3052,7 +3053,7 @@ packages:
     engines: {node: '>=6'}
 
   langs@https://codeload.github.com/Stremio/nodejs-langs/tar.gz/e5a3af7d2dd556592cbfe7cf879c1064ed0081a1:
-    resolution: {tarball: https://codeload.github.com/Stremio/nodejs-langs/tar.gz/e5a3af7d2dd556592cbfe7cf879c1064ed0081a1}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/Stremio/nodejs-langs/tar.gz/e5a3af7d2dd556592cbfe7cf879c1064ed0081a1}
     version: 2.0.0
 
   launch-editor@2.11.1:
@@ -4104,7 +4105,7 @@ packages:
     deprecated: Please use @jridgewell/sourcemap-codec instead
 
   spatial-navigation-polyfill@https://codeload.github.com/Stremio/spatial-navigation/tar.gz/64871b1422466f5f45d24ebc8bbd315b2ebab6a6:
-    resolution: {tarball: https://codeload.github.com/Stremio/spatial-navigation/tar.gz/64871b1422466f5f45d24ebc8bbd315b2ebab6a6}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/Stremio/spatial-navigation/tar.gz/64871b1422466f5f45d24ebc8bbd315b2ebab6a6}
     version: 1.2.0
 
   spdy-transport@3.0.0:
@@ -4134,7 +4135,7 @@ packages:
     engines: {node: '>= 0.4'}
 
   stremio-translations@https://codeload.github.com/Stremio/stremio-translations/tar.gz/90ea718c18750a0e9cd6824b0ef7c512a41cb90b:
-    resolution: {tarball: https://codeload.github.com/Stremio/stremio-translations/tar.gz/90ea718c18750a0e9cd6824b0ef7c512a41cb90b}
+    resolution: {gitHosted: true, integrity: sha512-CqEt3JeAI9Yh/8y8ND9rhKln5ptW0fTapx1p/VJxPHVWcN3Pz7EtqpycaVC9phQa9JHWzMVB3dF6FBRO2f/6Pg==, tarball: https://codeload.github.com/Stremio/stremio-translations/tar.gz/90ea718c18750a0e9cd6824b0ef7c512a41cb90b}
     version: 1.48.0
 
   string-length@4.0.2:
@@ -4453,6 +4454,7 @@ packages:
 
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   v8-to-istanbul@9.3.0:
@@ -4471,7 +4473,7 @@ packages:
     engines: {node: '>=0.10.0'}
 
   vtt.js@https://codeload.github.com/jaruba/vtt.js/tar.gz/84d33d157848407d790d78423dacc41a096294f0:
-    resolution: {tarball: https://codeload.github.com/jaruba/vtt.js/tar.gz/84d33d157848407d790d78423dacc41a096294f0}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/jaruba/vtt.js/tar.gz/84d33d157848407d790d78423dacc41a096294f0}
     version: 0.13.0
 
   walker@1.0.8:
@@ -5870,7 +5872,7 @@ snapshots:
 
   '@stremio/stremio-colors@5.2.0': {}
 
-  '@stremio/stremio-core-web@0.55.0':
+  '@stremio/stremio-core-web@https://mrcanelas.github.io/stremio-core/stremio-core-web/feat/stream-thumbnails-support/stremio-stremio-core-web-0.56.4.tgz':
     dependencies:
       '@babel/runtime': 7.24.1
 
