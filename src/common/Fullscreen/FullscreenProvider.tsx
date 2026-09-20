@@ -7,6 +7,7 @@ import useShortcut from '../Shortcuts/useShortcut';
 import useSettings from '../useSettings';
 import FullscreenContext, { type FullscreenContextValue } from './FullscreenContext';
 import { usePlatform } from '../Platform';
+import { tryApplyLandscapeLock } from '../playerLandscapeLock';
 
 type Props = {
     children: React.ReactNode,
@@ -41,6 +42,7 @@ const FullscreenProvider = ({ children }: Props) => {
         } else if (document.fullscreenEnabled) {
             try {
                 await document.documentElement.requestFullscreen();
+                await tryApplyLandscapeLock();
             } catch (err) {
                 console.error('Error enabling fullscreen', err);
             }

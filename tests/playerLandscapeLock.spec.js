@@ -143,3 +143,31 @@ describe('canRequestLandscapeLock', () => {
         })).toBe(false);
     });
 });
+
+describe('tryApplyLandscapeLock', () => {
+    const {
+        setApplyLandscapeLockOnFullscreen,
+        tryApplyLandscapeLock,
+    } = require('../src/common/playerLandscapeLock');
+
+    it('does not lock until the player has asked for it', async () => {
+        const lock = jest.fn(() => Promise.resolve());
+        global.screen = {
+            orientation: {
+                lock,
+                unlock: jest.fn(),
+            },
+        };
+
+        setApplyLandscapeLockOnFullscreen(false);
+        await tryApplyLandscapeLock();
+        expect(lock).not.toHaveBeenCalled();
+
+        setApplyLandscapeLockOnFullscreen(true);
+        await tryApplyLandscapeLock();
+        expect(lock).toHaveBeenCalledWith('landscape');
+
+        setApplyLandscapeLockOnFullscreen(false);
+        delete global.screen;
+    });
+});

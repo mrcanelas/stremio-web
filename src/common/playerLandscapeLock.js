@@ -50,20 +50,43 @@ const canRequestLandscapeLock = ({ canOffer, enabled, fullscreen, standalone }) 
 
 const isStandaloneDisplayMode = () => {
     try {
-        return typeof globalThis.matchMedia === 'function' &&
-            globalThis.matchMedia('(display-mode: standalone)').matches === true;
+        if (typeof globalThis.matchMedia !== 'function') {
+            return false;
+        }
+
+        return globalThis.matchMedia('(display-mode: standalone)').matches === true ||
+            globalThis.matchMedia('(display-mode: fullscreen)').matches === true ||
+            globalThis.matchMedia('(display-mode: minimal-ui)').matches === true;
     } catch (_) {
         return false;
     }
 };
 
+const isDocumentFullscreen = () => {
+    try {
+        return globalThis.document?.fullscreenElement === globalThis.document?.documentElement;
+    } catch (_) {
+        return false;
+    }
+};
+
+const lockOrientation = (orientation, type) => {
+    const result = orientation.lock(type);
+    if (result && typeof result.then === 'function') {
+        return result;
+    }
+    return Promise.resolve();
+};
+
 const requestLandscapeLock = (orientation) => {
     try {
-        const result = orientation.lock('landscape');
-        if (result && typeof result.then === 'function') {
-            return result.catch(() => undefined);
-        }
-        return Promise.resolve();
+        return lockOrientation(orientation, 'landscape').catch(() => {
+            try {
+                return lockOrientation(orientation, 'landscape-primary').catch(() => undefined);
+            } catch (_) {
+                return undefined;
+            }
+        });
     } catch (_) {
         return Promise.resolve();
     }
@@ -79,6 +102,25 @@ const releaseLandscapeLock = (orientation) => {
     }
 };
 
+let applyLandscapeLockOnFullscreen = false;
+
+const setApplyLandscapeLockOnFullscreen = (enabled) => {
+    applyLandscapeLockOnFullscreen = enabled === true;
+};
+
+const tryApplyLandscapeLock = () => {
+    if (!applyLandscapeLockOnFullscreen) {
+        return Promise.resolve();
+    }
+
+    const orientation = globalThis.screen?.orientation;
+    if (!orientation || typeof orientation.lock !== 'function') {
+        return Promise.resolve();
+    }
+
+    return requestLandscapeLock(orientation);
+};
+
 module.exports = {
     PLAYER_LANDSCAPE_LOCK_STORAGE_KEY,
     parsePlayerLandscapeLock,
@@ -88,6 +130,9 @@ module.exports = {
     canOfferLandscapeLock,
     canRequestLandscapeLock,
     isStandaloneDisplayMode,
+    isDocumentFullscreen,
     requestLandscapeLock,
     releaseLandscapeLock,
+    setApplyLandscapeLockOnFullscreen,
+    tryApplyLandscapeLock,
 };

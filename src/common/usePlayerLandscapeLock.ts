@@ -7,32 +7,32 @@ import {
     canOfferLandscapeLock,
     canRequestLandscapeLock,
     getScreenOrientationLock,
+    isDocumentFullscreen,
     isStandaloneDisplayMode,
     releaseLandscapeLock,
     requestLandscapeLock,
+    setApplyLandscapeLockOnFullscreen,
 } from './playerLandscapeLock';
 
-const usePlayerLandscapeLock = (fullscreen: boolean) => {
+const usePlayerLandscapeLock = () => {
     const platform = usePlatform();
     const { enabled } = usePlayerLandscapeLockSetting();
     const requestedLockRef = useRef(false);
 
     const canOffer = canOfferLandscapeLock(platform, getScreenOrientationLock());
-    const canRequest = canRequestLandscapeLock({
-        canOffer,
-        enabled,
-        fullscreen,
-        standalone: isStandaloneDisplayMode(),
-    });
 
     useEffect(() => {
         const orientation = globalThis.screen?.orientation;
-        if (!orientation || typeof orientation.lock !== 'function') {
-            return;
-        }
+        const canRequest = canRequestLandscapeLock({
+            canOffer,
+            enabled,
+            fullscreen: isDocumentFullscreen(),
+            standalone: isStandaloneDisplayMode(),
+        });
 
-        if (!canRequest) {
-            if (requestedLockRef.current) {
+        if (!orientation || typeof orientation.lock !== 'function' || !canOffer || !enabled) {
+            setApplyLandscapeLockOnFullscreen(false);
+            if (requestedLockRef.current && orientation) {
                 requestedLockRef.current = false;
                 releaseLandscapeLock(orientation);
             }
@@ -40,22 +40,49 @@ const usePlayerLandscapeLock = (fullscreen: boolean) => {
         }
 
         let cancelled = false;
-        requestedLockRef.current = true;
+        setApplyLandscapeLockOnFullscreen(true);
 
-        requestLandscapeLock(orientation).then(() => {
+        const applyLock = () => {
             if (cancelled) {
+                return;
+            }
+
+            requestedLockRef.current = true;
+            requestLandscapeLock(orientation).then(() => {
+                if (cancelled) {
+                    releaseLandscapeLock(orientation);
+                }
+            });
+        };
+
+        const onFullscreenChange = () => {
+            if (isDocumentFullscreen()) {
+                applyLock();
+                return;
+            }
+
+            if (requestedLockRef.current && !isStandaloneDisplayMode()) {
+                requestedLockRef.current = false;
                 releaseLandscapeLock(orientation);
             }
-        });
+        };
+
+        document.addEventListener('fullscreenchange', onFullscreenChange);
+
+        if (canRequest) {
+            applyLock();
+        }
 
         return () => {
             cancelled = true;
+            setApplyLandscapeLockOnFullscreen(false);
+            document.removeEventListener('fullscreenchange', onFullscreenChange);
             if (requestedLockRef.current) {
                 requestedLockRef.current = false;
                 releaseLandscapeLock(orientation);
             }
         };
-    }, [canRequest]);
+    }, [canOffer, enabled]);
 };
 
 export default usePlayerLandscapeLock;

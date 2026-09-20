@@ -92,7 +92,7 @@ const Player = () => {
     const [immersed, setImmersed] = React.useState(true);
     const setImmersedDebounced = React.useCallback(debounce(setImmersed, 3000), []);
     const [fullscreen, , , toggleFullscreen, , setVideoElement] = useFullscreen();
-    usePlayerLandscapeLock(fullscreen);
+    usePlayerLandscapeLock();
 
     React.useEffect(() => {
         const el = video.containerRef.current?.querySelector('video');

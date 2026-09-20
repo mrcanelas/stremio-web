@@ -37,6 +37,15 @@ const Player = forwardRef<HTMLDivElement, Props>(({ profile }: Props, ref) => {
 
     return (
         <Section ref={ref} label={'SETTINGS_NAV_PLAYER'}>
+            {
+                showPlayerLandscapeLock &&
+                    <Option label={'SETTINGS_PLAYER_LANDSCAPE_LOCK'}>
+                        <Toggle
+                            tabIndex={-1}
+                            {...playerLandscapeLockToggle}
+                        />
+                    </Option>
+            }
             <Category icon={'subtitles'} label={'SETTINGS_SECTION_SUBTITLES'}>
                 <Option label={'SETTINGS_SUBTITLES_LANGUAGE'}>
                     <MultiselectMenu
@@ -109,15 +118,6 @@ const Player = forwardRef<HTMLDivElement, Props>(({ profile }: Props, ref) => {
                         {...playInBackgroundToggle}
                     />
                 </Option>
-                {
-                    showPlayerLandscapeLock &&
-                        <Option label={'SETTINGS_PLAYER_LANDSCAPE_LOCK'}>
-                            <Toggle
-                                tabIndex={-1}
-                                {...playerLandscapeLockToggle}
-                            />
-                        </Option>
-                }
             </Category>
             <Category icon={'play'} label={'SETTINGS_SECTION_AUTO_PLAY'}>
                 <Option label={'AUTO_PLAY'}>

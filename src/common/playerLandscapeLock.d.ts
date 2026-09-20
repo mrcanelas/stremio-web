@@ -19,9 +19,12 @@ export function canRequestLandscapeLock(args: {
     standalone: boolean,
 }): boolean;
 export function isStandaloneDisplayMode(): boolean;
+export function isDocumentFullscreen(): boolean;
 export function requestLandscapeLock(orientation: {
     lock: (type: string) => Promise<void> | void,
 }): Promise<void>;
 export function releaseLandscapeLock(orientation: {
     unlock?: () => void,
 }): void;
+export function setApplyLandscapeLockOnFullscreen(enabled: boolean): void;
+export function tryApplyLandscapeLock(): Promise<void>;
