@@ -32,6 +32,9 @@ const useTranslate = require('./useTranslate');
 const { default: useOrientation } = require('./useOrientation');
 const { default: useMediaQuery } = require('./useMediaQuery');
 const { default: useLanguageSorting } = require('./useLanguageSorting');
+const { canOfferLandscapeLock, getScreenOrientationLock } = require('./playerLandscapeLock');
+const { default: usePlayerLandscapeLockSetting } = require('./usePlayerLandscapeLockSetting');
+const { default: usePlayerLandscapeLock } = require('./usePlayerLandscapeLock');
 
 module.exports = {
     FileDropProvider,
@@ -80,4 +83,8 @@ module.exports = {
     useOrientation,
     useMediaQuery,
     useLanguageSorting,
+    canOfferLandscapeLock,
+    getScreenOrientationLock,
+    usePlayerLandscapeLockSetting,
+    usePlayerLandscapeLock,
 };

@@ -31,6 +31,8 @@ const Player = forwardRef<HTMLDivElement, Props>(({ profile }: Props, ref) => {
         gpuVideoProcessingToggle,
         videoModeSelect,
         pauseOnMinimizeToggle,
+        showPlayerLandscapeLock,
+        playerLandscapeLockToggle,
     } = usePlayerOptions(profile);
 
     return (
@@ -107,6 +109,15 @@ const Player = forwardRef<HTMLDivElement, Props>(({ profile }: Props, ref) => {
                         {...playInBackgroundToggle}
                     />
                 </Option>
+                {
+                    showPlayerLandscapeLock &&
+                        <Option label={'SETTINGS_PLAYER_LANDSCAPE_LOCK'}>
+                            <Toggle
+                                tabIndex={-1}
+                                {...playerLandscapeLockToggle}
+                            />
+                        </Option>
+                }
             </Category>
             <Category icon={'play'} label={'SETTINGS_SECTION_AUTO_PLAY'}>
                 <Option label={'AUTO_PLAY'}>

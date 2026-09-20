@@ -26,6 +26,18 @@ const translations = Object.fromEntries(Object.entries(stremioTranslations()).ma
     translation: value
 }]));
 
+const playerLandscapeLockStrings = {
+    'en-US': 'Lock player to landscape',
+    'pt-BR': 'Fixar o player no modo paisagem',
+};
+
+Object.entries(playerLandscapeLockStrings).forEach(([locale, label]) => {
+    if (!translations[locale]) {
+        translations[locale] = { translation: {} };
+    }
+    translations[locale].translation.SETTINGS_PLAYER_LANDSCAPE_LOCK = label;
+});
+
 i18n
     .use(initReactI18next)
     .init({

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCore } from 'stremio/core';
-import { CONSTANTS, languageNames, useLanguageSorting, usePlatform } from 'stremio/common';
+import { CONSTANTS, languageNames, useLanguageSorting, usePlatform, usePlayerLandscapeLockSetting, canOfferLandscapeLock, getScreenOrientationLock } from 'stremio/common';
 
 const LANGUAGES_NAMES: Record<string, string> = languageNames;
 
@@ -9,6 +9,7 @@ const usePlayerOptions = (profile: Profile) => {
     const { t } = useTranslation();
     const core = useCore();
     const platform = usePlatform();
+    const playerLandscapeLockSetting = usePlayerLandscapeLockSetting();
 
     const languageOptions = useMemo(() => Object.keys(LANGUAGES_NAMES).map((code) => ({
         value: code,
@@ -351,6 +352,13 @@ const usePlayerOptions = (profile: Profile) => {
         }
     }), [profile.settings]);
 
+    const showPlayerLandscapeLock = canOfferLandscapeLock(platform, getScreenOrientationLock());
+
+    const playerLandscapeLockToggle = useMemo(() => ({
+        checked: playerLandscapeLockSetting.enabled,
+        onClick: playerLandscapeLockSetting.toggle,
+    }), [playerLandscapeLockSetting.enabled, playerLandscapeLockSetting.toggle]);
+
     const pauseOnMinimizeToggle = useMemo(() => ({
         checked: profile.settings.pauseOnMinimize,
         onClick: () => {
@@ -386,6 +394,8 @@ const usePlayerOptions = (profile: Profile) => {
         gpuVideoProcessingToggle,
         videoModeSelect,
         pauseOnMinimizeToggle,
+        showPlayerLandscapeLock,
+        playerLandscapeLockToggle,
     };
 };
 
